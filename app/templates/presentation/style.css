@@ -1,5 +1,5 @@
  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1a1a2e; color: #e0e0e0; overflow: hidden; height: 100vh; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1a1a2e; color: #e0e0e0; overflow: auto; height: 100vh; }
   /* body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1a1a2e; color: #e0e0e0; } */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 10px 24px; background: #16213e; border-bottom: 1px solid #0f3460; height: 50px; }
   header h1 { font-size: 16px; font-weight: 600; color: #e94560; }
@@ -9,7 +9,7 @@
   header nav button:disabled { opacity: 0.3; cursor: default; }
   header .slide-counter { font-size: 13px; color: #a0a0b0; min-width: 80px; text-align: center; }
   /* #viewport { width: 100vw; height: 100vh; padding: 70px 80px 40px; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; } */
-  #viewport { width: 100vw; height: 100vh; padding: 70px 80px 40px; overflow-y: hidden; display: flex; align-items: flex-start; justify-content: center; }
+  #viewport { width: 100vw; height: 100vh; padding: 70px 80px 40px; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; }
   .slide { display: none; max-width: 1000px; width: 100%; animation: fadeIn 0.3s ease; }
   .slide.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
