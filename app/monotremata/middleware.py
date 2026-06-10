@@ -19,5 +19,5 @@ def error_message(msg="no error message set"):
     from django.contrib import messages
     request = get_current_request()
     if request:
-        return messages.error(request, msg)
+        return messages.warning(request, msg)
     return None

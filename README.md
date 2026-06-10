@@ -34,7 +34,7 @@ where runtime usage patterns are arbitrary, subject to user variation, or otherw
 
 - Searched most valued use cases for water quality data management system
   
-  - **GEMS/Stat**
+  - **GEMS/Water**
 
   - **SDG632**
 

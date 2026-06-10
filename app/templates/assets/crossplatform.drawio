@@ -1,0 +1,103 @@
+<mxfile host="65bd71144e">
+    <diagram id="H6TfQ6I8e4ndczRiBQtJ" name="Page-1">
+        <mxGraphModel dx="471" dy="1725" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="56" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="30" y="-24" width="1070" height="404" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="group;fillColor=none;strokeColor=none;" parent="56" vertex="1" connectable="0">
+                    <mxGeometry x="52" y="163" width="110" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#d6b656;fillColor=#fff2cc;" parent="6" vertex="1">
+                    <mxGeometry width="105.6" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.keyboard;sketch=0;strokeColor=light-dark(#ffffff, #ededed);fillColor=#FFFFFF;fillStyle=solid;" parent="6" vertex="1">
+                    <mxGeometry x="4.4" y="114.54545454545453" width="96.8" height="49.09090909090909" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Android&lt;div&gt;TMUX&lt;/div&gt;&lt;div&gt;Browser&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="6" vertex="1">
+                    <mxGeometry x="8.072533333333332" y="24" width="89.46666666666667" height="84" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;imageBackground=none;" parent="56" vertex="1">
+                    <mxGeometry x="351.8" y="163" width="118.06" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#f5f5f5;strokeColor=#BDBDBD;" parent="56" source="12" target="53" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="818" y="163" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="Network&lt;div&gt;API&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="56" vertex="1">
+                    <mxGeometry x="620" y="53" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="image;html=1;image=img/lib/clip_art/networking/Print_Server_Wireless_128x128.png" parent="56" vertex="1">
+                    <mxGeometry x="575" y="178" width="110" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="group" parent="56" vertex="1" connectable="0">
+                    <mxGeometry width="1070" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Offlie Capabilities" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="24" vertex="1">
+                    <mxGeometry width="420.35714285714295" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Cloud Capabilities" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="24" vertex="1">
+                    <mxGeometry x="649.6428571428572" width="420.35714285714295" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Data Synchonization" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="24" vertex="1">
+                    <mxGeometry x="420.35714285714295" width="229.2857142857143" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.486;entryY=-0.012;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#BDBDBD;" parent="56" source="12" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.476;entryY=-0.012;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#BDBDBD;" parent="56" source="12" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="592" y="113" as="sourcePoint"/>
+                        <mxPoint x="430" y="171" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#f5f5f5;strokeColor=#BDBDBD;" parent="56" source="28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="332" y="203.11764705882365" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fillColor=#f5f5f5;strokeColor=#BDBDBD;" parent="56" source="28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="202" y="203.11764705882365" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="28" value="Network&lt;div&gt;Local&lt;/div&gt;&lt;div&gt;API&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="56" vertex="1">
+                    <mxGeometry x="222" y="163" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="group;fillColor=none;strokeColor=none;" parent="56" vertex="1" connectable="0">
+                    <mxGeometry x="274" y="313" width="40" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#d79b00;fillColor=#ffe6cc;" parent="43" vertex="1">
+                    <mxGeometry width="38.39999999999999" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.keyboard;sketch=0;strokeColor=light-dark(#ffffff, #ededed);fillColor=#FFFFFF;fillStyle=solid;" parent="43" vertex="1">
+                    <mxGeometry x="1.5999999999999999" y="44.54545454545453" width="35.19999999999999" height="19.09090909090909" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="" style="group;fillColor=none;strokeColor=none;" parent="56" vertex="1" connectable="0">
+                    <mxGeometry x="207" y="334" width="40" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#82b366;fillColor=#d5e8d4;" parent="47" vertex="1">
+                    <mxGeometry width="38.39999999999999" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.keyboard;sketch=0;strokeColor=light-dark(#ffffff, #ededed);fillColor=#FFFFFF;fillStyle=solid;" parent="47" vertex="1">
+                    <mxGeometry x="1.5999999999999999" y="44.54545454545453" width="35.19999999999999" height="19.09090909090909" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="A" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" parent="47" vertex="1">
+                    <mxGeometry x="2.935466666666666" y="9.333333333333334" width="32.53333333333333" height="32.666666666666664" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="B" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" parent="56" vertex="1">
+                    <mxGeometry x="277.73546666666664" y="323.00333333333333" width="32.53333333333333" height="32.666666666666664" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="Cloud" style="html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0079D6;labelPosition=center;verticalLabelPosition=middle;verticalAlign=top;align=center;fontSize=12;outlineConnect=0;spacingTop=-6;fontColor=#FFFFFF;sketch=0;shape=mxgraph.sitemap.cloud;" vertex="1" parent="56">
+                    <mxGeometry x="820" y="201.5" width="210" height="132.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="Tenant" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="56">
+                    <mxGeometry x="220" y="54" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -20,9 +20,9 @@ dependencies = [
     {% endif %}
     "djangorestframework-gis==1.2.1",
     {% if project.category in "server gis" %}
+    "django-apptemplates==1.5",
     "pandas==3.0.2",
     "geopandas==1.1.3",
-    "django-apptemplates==1.5",
     {% endif %}
     {% if project.db_driver in "postgres postgis" %}
     "psycopg2-binary==2.9.12"

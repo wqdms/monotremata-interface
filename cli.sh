@@ -117,3 +117,12 @@ cmd_build_dockerimage_cluster(){
     podman push cluster.local:32000/mono:latest
 }
 
+cmd_demonstartion_wqdms(){
+    cd /tmp/
+    . /src/.venv/bin/activate
+    git clone http://192.168.179.3:3000/unep/wqdms.git
+    cd wqdms
+    python manage.py setup -s
+    python manage.py runserver 0.0.0.0:8002
+}
+

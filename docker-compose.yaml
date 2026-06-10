@@ -24,6 +24,9 @@ services:
     ports:
       - 5678:5678 # debugpy
       - 8000:8000 # backend
+      - 8002:8002
+      - 8003:8003
+      - 8004:8004
     command: ["/bin/bash","-c",". ~/.bashrc && cmd_debug"]
     # command: ["/bin/bash","-c","python -m http.server -b 0.0.0.0 8009"]
     # command: ["/bin/bash","-c","uv run debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000"]
