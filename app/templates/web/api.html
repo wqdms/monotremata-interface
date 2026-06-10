@@ -1,0 +1,8 @@
+{% extends "rest_framework/api.html" %}
+{% load monotremata %}
+{% block breadcrumbs %}
+<div style="height: 60px;"></div>
+{% endblock breadcrumbs %}
+{% block content %}
+{% mono_render_context flatpage %}
+{% endblock content %}

@@ -1,0 +1,282 @@
+@media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    @page :first-page { margin-top: 12mm; }
+
+    body {
+        background: #1a1a2e !important;
+        color: #e0e0e0 !important;
+        -webkit-print-color-adjust: economy !important;
+        print-color-adjust: economy !important;
+    }
+
+    header, header nav, #viewport, #slides-invisible {
+        display: none !important;
+    }
+
+    .print-visible {
+        display: block !important;
+        position: static !important;
+        overflow: visible !important;
+        height: auto !important;
+        width: auto !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .print-visible .slide {
+        display: block !important;
+        position: relative !important;
+        padding: 4mm 10mm 6mm 10mm !important;
+        margin: 0 auto !important;
+        max-width: 170mm !important;
+        width: 100% !important;
+        animation: none !important;
+        page-break-before: auto !important;
+        break-before: page !important;
+    }
+
+    .print-visible .slide:first-child {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+    }
+
+    .print-visible .slide-inner {
+        width: 100% !important;
+        max-width: 170mm !important;
+        max-height: none !important;
+        overflow: visible !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        border-color: #e0e0e0 !important;
+        outline-color: #e0e0e0 !important;
+    }
+
+    .print-visible h2,
+    .print-visible h3,
+    .print-visible p,
+    .print-visible li,
+    .print-visible td,
+    .print-visible .step-content p,
+    .print-visible .step-content h4 {
+        font-family: 'Georgia', 'Times New Roman', 'Noto Serif', 'DejaVu Serif', serif !important;
+    }
+
+    .print-visible h1,
+    .print-visible h2 {
+        font-size: 20pt !important;
+        color: #e94560 !important;
+        border: none !important;
+        border-bottom: 1px solid #e94560 !important;
+        padding-bottom: 1mm !important;
+        margin-bottom: 4mm !important;
+        letter-spacing: 0.5px;
+        line-height: 1.2 !important;
+    }
+
+    .print-visible h1:first-child,
+    .print-visible h2:first-child {
+        padding-bottom: 0 !important;
+        margin-bottom: 2mm !important;
+        border-bottom: none !important;
+        color: #e94560 !important;
+    }
+
+    .print-visible h3 {
+        font-size: 13pt !important;
+        color: #53a8b6 !important;
+        border-top: 1px solid #53a8b6 !important;
+        margin-top: 6mm !important;
+        margin-bottom: 3mm !important;
+        line-height: 1.2 !important;
+    }
+
+    .print-visible h4 {
+        font-size: 11pt !important;
+        color: #e0e0e0 !important;
+    }
+
+    .print-visible p,
+    .print-visible li,
+    .print-visible td {
+        font-size: 10pt !important;
+        line-height: 1.5 !important;
+        color: #e0e0e0 !important;
+    }
+
+    .print-visible .highlight {
+        color: #e94560 !important;
+        font-weight: 600 !important;
+    }
+
+    .print-visible table {
+        font-size: 9pt !important;
+        page-break-inside: avoid !important;
+        width: 100% !important;
+    }
+    .print-visible th {
+        background: #0f3460 !important;
+        color: #e0e0e0 !important;
+        border-color: #0f3460 !important;
+        padding: 2.5mm 3mm !important;
+        font-size: 9.5pt !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible td {
+        border-color: #16213e !important;
+        padding: 2.5mm 3mm !important;
+        font-size: 9.5pt !important;
+        background: #16213e !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible tr:nth-child(even) td {
+        background: #16213e !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible table code {
+        font-size: 9pt !important;
+        white-space: nowrap !important;
+    }
+
+    .print-visible .steps {
+        gap: 4mm !important;
+        margin: 4mm 0 !important;
+    }
+    .print-visible .step {
+        padding: 4mm 6mm !important;
+        margin: 0 !important;
+        background: #16213e !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible .step-num {
+        background: #e94560 !important;
+        color: #fff !important;
+        width: 18mm !important;
+        height: 18mm !important;
+        font-size: 11pt !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible .step-content h4 {
+        color: #e0e0e0 !important;
+        font-size: 11pt !important;
+        margin-bottom: 1mm !important;
+    }
+    .print-visible .step-content p {
+        font-size: 9.5pt !important;
+        line-height: 1.4 !important;
+        color: #e0e0e0 !important;
+    }
+    .print-visible .step .tag {
+        background: #0f3460 !important;
+        color: #53a8b6 !important;
+        font-size: 9pt !important;
+        padding: 2mm 6mm !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-visible .two-col {
+        gap: 8mm !important;
+    }
+    .print-visible .col-box {
+        background: #16213e !important;
+        padding: 6mm 8mm !important;
+        margin-bottom: 3mm !important;
+        border-color: #0f3460 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible .checklist li {
+        padding: 2mm 0 2mm 28px !important;
+        font-size: 9.5pt !important;
+        margin-bottom: 1.5mm !important;
+    }
+    .print-visible .checklist li::before {
+        font-size: 14pt !important;
+        color: #e94560 !important;
+    }
+
+    .print-visible .tech-stack {
+        flex-wrap: wrap !important;
+        gap: 4mm !important;
+        margin: 5mm 0 !important;
+    }
+    .print-visible .tech-item {
+        background: #16213e !important;
+        border-color: #0f3460 !important;
+        padding: 4mm 7mm !important;
+        font-size: 9.5pt !important;
+        width: auto !important;
+        min-width: 85px !important;
+        max-width: 110px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .print-visible .tech-item .tech-name {
+        color: #e94560 !important;
+        font-size: 13pt !important;
+    }
+    .print-visible .tech-item .tech-desc {
+        color: #a0a0a0 !important;
+        font-size: 8.5pt !important;
+    }
+
+    .print-visible svg {
+        max-width: 100% !important;
+        max-height: 150mm !important;
+        height: auto !important;
+        width: auto !important;
+    }
+
+    .print-visible .graphic-placeholder {
+        background: #16213e !important;
+        border-color: #0f3460 !important;
+        color: #e0e0e0 !important;
+        padding: 10mm !important;
+        margin: 6mm 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-visible a {
+        color: #53a8b6 !important;
+    }
+
+    .print-visible .small-note {
+        color: #6a6a7a !important;
+        font-size: 9pt !important;
+    }
+
+    .print-header {
+        display: flex !important;
+        justify-content: space-between;
+        font-size: 7.5pt !important;
+        color: #6a6a7a !important;
+        border-bottom: 0.5px solid #333 !important;
+        padding-bottom: 2mm !important;
+        margin-bottom: 3mm !important;
+    }
+    .print-header .header-title {
+        font-weight: 600 !important;
+        color: #e94560 !important;
+    }
+
+    .print-footer {
+        display: flex !important;
+        justify-content: space-between;
+        font-size: 7pt !important;
+        color: #6a6a7a !important;
+        border-top: 0.5px solid #333 !important;
+        padding-top: 2mm !important;
+        margin-top: 8mm !important;
+    }
+
+    #navBarContainer {
+        display: none;
+    }
+}

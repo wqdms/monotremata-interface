@@ -1,0 +1,47 @@
+{% autoescape off %}
+
+x-debugpy: &debugpy
+  build:
+    dockerfile: Dockerfile
+    context: "."
+  container_name: {{ project.name | lower }}_debugpy
+  environment:
+    DEBUGPY_PORT: 5678
+    DJANGO_PORT: 8000
+    SERVICE_HOST: {{ SERVICE_HOST }}
+    SERVICE_HOST: {{ SERVICE_URL }}
+    GIT_HOST:  {{ GIT_HOST }}
+    GIT_URL:  {{ GIT_URL }}
+  ports:
+    - 5678:5678 # debugpy
+    - 8000:8000 # backend
+  command: ["/bin/bash","-c","uv run debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000"]
+
+x-jupyter: &jupyter
+  build:
+    dockerfile: Dockerfile
+    context: "."
+  container_name: {{ project.name | lower }}_jupyterlab
+  ports:
+    - 8001:8001
+  command: ["/bin/bash","-c","python manage.py shell_plus --lab"]
+
+x-backend: &backend
+  restart: always
+  volumes:
+    - ./:/app
+
+services:
+  debugpy:
+    <<: *debugpy
+    <<: *backend
+
+  jupyterlab:
+    <<: *backend
+    <<: *jupyter
+
+
+# volumes:
+#   pipenvironment:
+
+{% endautoescape %}

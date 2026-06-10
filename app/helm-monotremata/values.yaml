@@ -1,0 +1,246 @@
+# Default values for helm-monotremata.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: localhost:32000/uv-admin
+  # This sets the pull policy for images.
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+command: "git pull && git switch development/v0 && uv run manage.py setup -s"
+
+# Configmap Environments
+environments:
+  # Django Core (Retained from original)
+  - name: "DJANGO_SECRET_KEY"
+    value: "django-insecure-0=_^0tqg+pkc#m6q#*20izp96#)-52c&&xby#r3d1(!--8ig9%"
+  - name: "DJANGO_DEBUG"
+    value: "True"
+  - name: "DJANGO_ALLOWED_HOSTS"
+    value: "*"
+  - name: "DJANGO_PORT"
+    value: "8001"
+
+  # Database (PostgreSQL)
+  - name: "DB_NAME"
+    value: "monotremata"
+  - name: "DB_USER"
+    value: "monotremata"
+  - name: "DB_PASSWORD"
+    value: "admin1234"
+  - name: "DB_HOST"
+    value: "monotremata.database.svc.cluster.local"
+  - name: "DB_PORT"
+    value: "5432"
+
+  # Git / Forgejo Integration
+  - name: "GIT_ADMIN_USER"
+    value: "amir"
+  - name: "GIT_ADMIN_PASSWORD"
+    value: ""
+  - name: "GIT_HOST"
+    value: "forgejo.forgejo.svc.cluster.local"
+  - name: "GIT_URL"
+    value: "http://forgejo.forgejo.svc.cluster.local"
+
+  # Service & Network Routing
+  - name: "SERVICE_URL"
+    value: "http://monotremata.monotremata.svc.cluster.local"
+  - name: "SERVICE_HOST"
+    value: "monotremata.monotremata.svc.cluster.local"
+
+  # Jupyter Server Configuration
+  - name: "JUPYTER_SERVER_HOST_IP"
+    value: "0.0.0.0"
+  - name: "JUPYTER_SERVER_HOST_PROTOCOL"
+    value: "http"
+  # Note: These two are dynamically constructed in your Python code 
+  # from the above protocol/IP/port, but included here for completeness
+  - name: "JUPYTER_SERVER_HOST"
+    value: "http://0.0.0.0"
+  - name: "JUPYTER_SERVICE_URL"
+    value: "http://0.0.0.0:8000"
+  - name: "JUPYTER_SERVER_PORT"
+    value: "8000"
+  - name: "JUPYTER_WEBPATH"
+    value: ""
+  - name: "JUPYTER_TOKEN"
+    value: "token1234"
+
+  # API / Swagger Documentation
+  - name: "MONOTREMATA_SWAGGER_TITLE"
+    value: "Monotremata 🦔"
+  - name: "API_VERSION"
+    value: "1.1"
+
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service:
+  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  type: ClusterIP
+  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+  port: 8000
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  enabled: true
+  className: traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: lets-encrypt
+  hosts:
+    - host: web.groupeffect.app
+      paths:
+        - path: /
+          pathType: Prefix
+          port: http
+    - host: lab.groupeffect.app
+      paths:
+        - path: /
+          pathType: Prefix
+          port: http
+    - host: web.cluster.local
+      paths:
+        - path: /
+          pathType: Prefix
+          port: http
+    - host: lab.cluster.local
+      paths:
+        - path: /
+          pathType: Prefix
+          port: http
+  tls:
+    - secretName: lets-encrypt-cert
+      hosts:
+        - web.groupeffect.app
+        - lab.groupeffect.app
+        - groupeffect.app
+
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 1
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created.
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account.
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template.
+  name: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Expose the service via gateway-api HTTPRoute
+# Requires Gateway API resources and suitable controller installed within the cluster
+# (see: https://gateway-api.sigs.k8s.io/guides/)
+httpRoute:
+  # HTTPRoute enabled.
+  enabled: false
+  # HTTPRoute annotations.
+  annotations: {}
+  # Which Gateways this Route is attached to.
+  parentRefs:
+  - name: gateway
+    sectionName: http
+    # namespace: default
+  # Hostnames matching HTTP header.
+  hostnames:
+  - chart-example.local
+  # List of rules and filters applied.
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /headers
+  #   filters:
+  #   - type: RequestHeaderModifier
+  #     requestHeaderModifier:
+  #       set:
+  #       - name: My-Overwrite-Header
+  #         value: this-is-the-only-value
+  #       remove:
+  #       - User-Agent
+  # - matches:
+  #   - path:
+  #       type: PathPrefix
+  #       value: /echo
+  #     headers:
+  #     - name: version
+  #       value: v2
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+  # - name: foo
+  #   secret:
+  #     secretName: mysecret
+  #     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+  # - name: foo
+  #   mountPath: "/etc/foo"
+  #   readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,49 @@
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1a1a2e; color: #e0e0e0; overflow: hidden; height: 100vh; }
+  /* body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1a1a2e; color: #e0e0e0; } */
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 10px 24px; background: #16213e; border-bottom: 1px solid #0f3460; height: 50px; }
+  header h1 { font-size: 16px; font-weight: 600; color: #e94560; }
+  header nav { display: flex; gap: 10px; align-items: center; }
+  header nav button { padding: 6px 18px; border: 1px solid #0f3460; background: #1a1a2e; color: #e0e0e0; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.2s; }
+  header nav button:hover { background: #0f3460; }
+  header nav button:disabled { opacity: 0.3; cursor: default; }
+  header .slide-counter { font-size: 13px; color: #a0a0b0; min-width: 80px; text-align: center; }
+  /* #viewport { width: 100vw; height: 100vh; padding: 70px 80px 40px; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; } */
+  #viewport { width: 100vw; height: 100vh; padding: 70px 80px 40px; overflow-y: hidden; display: flex; align-items: flex-start; justify-content: center; }
+  .slide { display: none; max-width: 1000px; width: 100%; animation: fadeIn 0.3s ease; }
+  .slide.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  h2 { font-size: 32px; color: #e94560; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 2px solid #0f3460; }
+  h3 { font-size: 22px; color: #53a8b6; margin: 20px 0 10px; }
+  p { font-size: 16px; line-height: 1.7; margin-bottom: 12px; color: #c8c8d8; }
+  ul { margin: 10px 0 16px 20px; }
+  li { font-size: 16px; line-height: 1.7; margin-bottom: 6px; color: #c8c8d8; }
+  .graphic-placeholder { border: 2px dashed #0f3460; border-radius: 8px; padding: 40px; text-align: center; margin: 20px 0; background: #16213e; color: #5a5a7a; font-size: 14px; }
+  .graphic-placeholder .icon { font-size: 36px; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th { background: #0f3460; color: #e94560; padding: 10px 14px; text-align: left; font-weight: 600; border: 1px solid #1a1a3e; }
+  td { padding: 10px 14px; border: 1px solid #1a1a3e; color: #c8c8d8; }
+  tr:nth-child(even) td { background: #16213e; }
+  a { color: #53a8b6; text-decoration: none; }
+  a:hover { text-decoration: underline; color: #e94560; }
+  .checklist { list-style: none; margin-left: 0; padding: 0; }
+  .checklist li { padding: 8px 0 8px 32px; position: relative; }
+  .checklist li::before { content: '\2610'; position: absolute; left: 0; color: #e94560; font-size: 18px; }
+  .checklist li.checked::before { content: '\2611'; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col-box { background: #16213e; padding: 20px; border-radius: 8px; border: 1px solid #0f3460; }
+  .highlight { color: #e94560; font-weight: 600; }
+  .small-note { font-size: 13px; color: #6a6a8a; margin-top: 8px; }
+  .steps { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+  .step { display: flex; align-items: flex-start; gap: 14px; background: #16213e; padding: 14px 18px; border-radius: 6px; border: 1px solid #0f3460; }
+  .step-num { background: #e94560; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .step-content h4 { color: #e0e0e0; font-size: 16px; margin-bottom: 4px; }
+  .step-content p { font-size: 14px; margin: 0; color: #a0a0b8; }
+  .tag { display: inline-block; background: #0f3460; color: #53a8b6; padding: 3px 10px; border-radius: 4px; font-size: 13px; margin: 2px 4px 2px 0; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  .tech-item { background: #16213e; border: 1px solid #0f3460; padding: 12px 20px; border-radius: 8px; text-align: center; width: 140px; }
+  .tech-item .tech-name { font-size: 18px; font-weight: 600; color: #e94560; }
+  .tech-item .tech-desc { font-size: 18px; color: #7a7a9a; margin-top: 4px; }
+  .center{
+    margin-left: auto;margin-right: auto;
+  }

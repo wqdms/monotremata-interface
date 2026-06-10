@@ -1,0 +1,62 @@
+{% autoescape off %}
+# https://forgejo.org/docs/v11.0/user/actions/basic-concepts/
+on: [push]
+env:
+  DEPLOYMENT_URL: '{{ pipeline_context.SERVICE_URL }}/deployment/{{ pipeline_context.id }}'
+
+jobs:
+  print-content:
+    runs-on: ubuntu-admin
+    steps:
+      # - uses: https://data.forgejo.org/actions/checkout@v4
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: list directory contents
+        run: ls -la
+      - name: copy cli.sh
+        run: |{% verbatim %}
+          echo $(curl $DEPLOYMENT_URL --insecure -v)
+          curl --insecure -H "ContentType: application/json" \
+            -u "$GITHUB_ACTOR:${{ secrets.ADMIN_PASSWORD }}" \
+            "$DEPLOYMENT_URL/?format=json" | jq -r .results[0].script.applicationset > applicationset.yaml{% endverbatim %}
+          cat ./applicationset.yaml
+      {% if pipeline_command %}
+      - name: pipeline command
+        run: |
+          ADMIN_USERNAME=$GITHUB_ACTOR
+          ##{% for pc in pipeline_command %}
+          {{ pc }}{% endfor %}
+          {% endif %}
+  # deployment-steps:
+  #   runs-on: uv
+  #   steps:
+  #     - name: list directory contents
+  #       run: ls -la
+  #     - name: show cli script
+  #       run: echo "{{ env.CLI_SCRIPT }}"
+      
+# jobs:
+#   job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Set Output
+#         id: step1
+#         run: echo "::set-output name=my_output::my_value"
+#       - name: Use Output
+#         run: echo "${{ steps.step1.outputs.my_output }}"
+
+# jobs:
+#   job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Set Variable
+#         run: echo "MY_VARIABLE=my_value" >> $GITHUB_ENV #this is workflow scoped
+
+#   job2:
+#     needs: job1
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Use Variable
+#         run: echo "${{ env.MY_VARIABLE }}"
+
+{% endautoescape %}

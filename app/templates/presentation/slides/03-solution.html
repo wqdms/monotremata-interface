@@ -1,0 +1,53 @@
+<div class="slide-inner">
+<h2>Solution Architecture <i class="small-note" style="text-align:center;font-size:18px;color:#e94560;margin:20px 0;">... Design a system that writes a system</i>
+</h2> 
+<h3>What we needed</h3>
+<p>A way to rapidly generate maintainable, standards-compliant backends without starting from scratch each time.</p>
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Decompose</h4>
+      <p>Break <span class="highlight">Complicated → Complex → Simple Chunks</span></p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Generate</h4>
+      <p>Build backends from data schemas (user-defined)</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Integrate</h4>
+      <p>Base functionality around a <span class="highlight">Deployment</span> model</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>Autonomy</h4>
+      <p>Versioning independent of any platform; zip-based deployment options</p>
+    </div>
+  </div>
+<div class="two-col">
+  <div class="col-box">
+    <h3>Organization Tree</h3>
+    <code style="font-size:13px;color:#53a8b6;">
+      Organization<br>
+      &nbsp;&nbsp;└── Project<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Application<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Domain<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Namespace<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Deployment
+    </code>
+  </div>
+  <div class="col-box">
+    <h3>Option: AI Integration</h3>
+    <p style="font-size:14px;">MCP server communicates with OpenAPI REST framework. Backend hosts <code>flatpages</code> for user-defined instructions and documentation.</p>
+  </div>
+</div>
+</div>
+</div>

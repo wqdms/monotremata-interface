@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monotremata Interface - Presentation</title>
+<style>
+ {% include 'presentation/style.css' %}
+ {% include 'presentation/print-dark.css' %}
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="/">Monotremata Interface</a></h1>
+  <nav>
+    <button id="prev" onclick="slideNavigate(-1)">← Previous</button>
+    <span class="slide-counter" id="counter">1 / 12</span>
+    <button id="next" onclick="slideNavigate(1)">Next →</button>
+    <button class="print-button" onclick="beforePrint()" style="margin-left:12px;padding:6px 12px;border:1px solid #0f3460;background:#1a1a2e;color:#e0e0e0;border-radius:4px;cursor:pointer;font-size:13px;">Print</button>
+  </nav>
+  <h1 style="font-size:14px;color:#a0a0b0;font-weight:400">by <b>Amir Yousefi</b> : amir.yousefizanjanifard@un.org</h1>
+</header>
+<div id="viewport">
+</div>
+<div id="slides-invisible">
+  {% for i in templates %}
+  <div class="slide" id="{{ i }}" data-slide-id="{{ forloop.counter }}" data-total="{{ templates|length }}">
+    {% autoescape off %}
+    {% include i %}
+    {% endautoescape %}
+  </div>
+  {% endfor %}
+</div>
+
+<div id="side-nav-wrapper">
+    <style>
+        #side-nav-wrapper {
+            /* Configuration */
+            --nav-width: 60px;
+            --btn-size: 40px;
+            --bg-color: rgba(255, 255, 255, 0.05);
+            --blur: 10px;
+
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-bar {
+            background: var(--bg-color);
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: none;
+            border-radius: 0 15px 15px 0;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Space between numbers */
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn {
+            width: var(--btn-size);
+            height: var(--btn-size);
+            background: rgba(20, 20, 20, 0.6);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+            outline: none;
+        }
+
+        /* Hover Effect: Slides the button out slightly to the right */
+        .nav-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateX(8px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Active State */
+        .nav-btn.active {
+            background: #374c6e;
+            border-color: #60a5fa;
+            color: white;
+        }
+    </style>
+
+    <div class="nav-bar" id="navBarContainer">
+        <!-- Buttons will be injected here -->
+    </div>
+
+</div>
+
+
+
+<script>
+const SLIDES = {{ templates|safe }};
+const TOTAL = SLIDES.length;
+let current = 0;
+const viewport = document.getElementById('viewport');
+const slidesInvisible = document.getElementById('slides-invisible');
+let originalContent = null;
+let originalSlidesInvisible = null;
+const container = document.getElementById('navBarContainer');
+
+const id = parseInt(window.location.hash.slice(1), 10);
+if (!isNaN(id)) {
+  console.log("New ID from URL:", id);
+  current = id;
+}
+
+async function loadSlide(index) {
+  current = index;
+  window.location.hash = index;
+  try {
+    const idName = SLIDES[index];
+    const html = document.getElementById(idName).innerHTML;
+    viewport.innerHTML = '';
+    const div = document.createElement('div');
+    div.className = 'slide';
+    div.innerHTML = html;
+    viewport.appendChild(div);
+    div.classList.add('active');
+    updateNav();
+    loadNav();
+  } catch(e) {
+    viewport.innerHTML = '<div class="slide active"><h2>Error</h2><p>Could not load slide ' + index + e +'</p></div>';
+  }
+}
+
+
+function loadNav(){
+  document.getElementById("navBarContainer").innerHTML = "";
+  for (let i = 0; i < TOTAL; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn';
+    if (i == current){
+      btn.className += ' active';
+    }
+    btn.innerText = i;
+    // Attach the click function
+    btn.onclick = (event) => loadSlide(i);
+    
+    container.appendChild(btn);
+  }
+}
+
+function beforePrint() {
+  // Save original state
+  originalContent = viewport.innerHTML;
+  originalSlidesInvisible = slidesInvisible.innerHTML;
+
+  // Build all slides in viewport for printing
+  viewport.innerHTML = slidesInvisible.innerHTML;
+  viewport.id = 'viewport-print';
+  viewport.className = 'print-visible';
+  slidesInvisible.style.display = 'none';
+  viewport.style.display = 'block';
+
+  // Inject headers/footers into every slide
+  const slides = viewport.querySelectorAll('.slide');
+  const authorEmail = "amir.yousefizanjanifard@un.org";
+  const authorName = "Amir Yousefi";
+  slides.forEach((slide, i) => {
+    const pageNum = i + 1;
+
+    const header = document.createElement('div');
+    header.className = 'print-header';
+    header.innerHTML = '<span class="header-title">UNEP | WQDMS | Monotremata Interface</span><span class="header-author">' + authorEmail + ' - ' + authorName + '</span>';
+    slide.insertBefore(header, slide.firstElementChild);
+
+    const footer = document.createElement('div');
+    footer.className = 'print-footer';
+    footer.innerHTML = '<span>' + authorEmail + ' - ' + authorName + '</span><span>' + pageNum + ' / ' + TOTAL + '</span>';
+    slide.appendChild(footer);
+  });
+
+  // Auto-scale any slides that exceed one A4 page height
+  const availableHeight = window.innerHeight * 1.75; // A4 at 96dpi ~790px minus margins
+  slides.forEach(slide => {
+    const inner = slide.querySelector('.slide-inner');
+    if (inner && inner.offsetHeight > availableHeight) {
+      const scale = availableHeight / inner.offsetHeight;
+      slide.style.transform = 'scale(' + scale + ')';
+      slide.style.transformOrigin = 'top center';
+      slide.style.height = (inner.offsetHeight * scale) + 'px';
+      slide.style.overflow = 'visible';
+    }
+  });
+
+  window.print();
+}
+
+function afterPrint() {
+  // Restore original state
+  if (originalContent) {
+    viewport.innerHTML = originalContent;
+  }
+  viewport.id = 'viewport';
+  viewport.className = '';
+  viewport.style.display = '';
+  if (originalSlidesInvisible) {
+    slidesInvisible.innerHTML = originalSlidesInvisible;
+  }
+  slidesInvisible.style.display = '';
+}
+
+// Restore after print dialog closes
+window.addEventListener('afterprint', afterPrint);
+
+function updateNav() {
+  document.getElementById('prev').disabled = current === 0;
+  document.getElementById('next').disabled = current === TOTAL;
+  document.getElementById('counter').textContent = current + ' / ' + (TOTAL -1);
+}
+
+function slideNavigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  current = next;
+  loadSlide(current);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); slideNavigate(1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); slideNavigate(-1); }
+});
+
+loadNav()
+loadSlide(current);
+</script>
+</body>
+</html>

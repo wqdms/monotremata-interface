@@ -1,0 +1,79 @@
+<style>
+.icon-logo
+  {
+      font-size: 30px;
+      -webkit-transform: scaleX(-1);
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      transform: scaleX(-1);
+      display: inline-block;
+  }
+</style>
+<div class="slide-inner">
+<h2>Core API Resources</h2>
+
+<p>The generated backend exposes a REST API with these core endpoints:</p>
+
+<table style="width: 100%;">
+  <tr>
+    <th>Endpoint</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td>  <a href="/admin/monotremata/domain">
+   <div title="Domain" class="icon-logo">🌏</div>
+  </a><code>GET /domain/</code></td>
+    <td>Logical grouping / metadata namespace</td>
+  </tr>
+  <tr>
+    <td>  <a href="/admin/monotremata/namespace">
+    <div title="Namespace" class="icon-logo">🌐</div>
+  </a><code>GET /namespace/</code></td>
+    <td>Npaces tied to domains</td>
+  </tr>
+  <tr>
+    <td>  <a href="/admin/monotremata/organization">
+   <div title="Organization" class="icon-logo">🧭</div>
+  </a><code>GET /organization/</code></td>
+    <td>Top-level organization container</td>
+  </tr>
+    <tr>
+    <td>  <a href="/admin/monotremata/document">
+   <div title="Document" class="icon-logo">📑</div>
+  </a><code>GET /document/</code></td>
+    <td>document upload, download, process schema</td>
+  </tr>
+  <tr>
+    <td><a href="/admin/monotremata/project">
+   <div title="Project" class="icon-logo">🦦</div>
+  </a><code>GET /project/</code></td>
+    <td>Projects with apps and domain config</td>
+  </tr>
+  <tr>
+    <td>  <a href="/admin/monotremata/application">
+   <div title="Application" class="icon-logo">🦫</div>
+  </a><code>GET /application/</code></td>
+    <td>Application definitions</td>
+  </tr>
+  <tr>
+    <td><a href="/admin/monotremata/presetmodel">
+      <div title="Preset Model" class="icon-logo">🦔</div>
+    </a><code>GET /presetmodel/</code></td>
+    <td><span class="highlight">Declarative model definitions</span> (className, classParent, fields)</td>
+  </tr>
+  <tr>
+    <td> <a href="/admin/monotremata/presetmodelfield">
+   <div title="Preset Model Field" class="icon-logo">🦆</div>
+  </a><code>GET /presetmodelfield/</code></td>
+    <td>Model fields (CharField, JSONField, GeometryField, etc.)</td>
+  </tr>
+  <tr>
+    <td>  <a href="/admin/monotremata/deployment">
+   <div title="Deployment" class="icon-logo">🥚</div>
+  </a><code>GET /deployment/</code></td>
+    <td>Deploy records (auth required)</td>
+  </tr>
+
+</table>
+
+</div>

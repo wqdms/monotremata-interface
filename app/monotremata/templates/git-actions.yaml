@@ -1,0 +1,22 @@
+{% autoescape off %}
+# https://forgejo.org/docs/v11.0/user/actions/basic-concepts/
+on: [push]
+env:
+  DEPLOYMENT_URL: '{{ pipeline_context.SERVICE_URL }}/deployment/{{ pipeline_context.id }}'
+
+jobs:
+  deployment:
+    runs-on: uv-admin
+    steps:
+      - name: download 
+        run: |
+          pwd
+          git config --global user.name "$USER:$HOSTNAME"
+          git config --global user.email "$USER@$HOSTNAME.local"
+          git config --global http.sslVerify "false"
+          git clone $GITHUB_SERVER_URL/{{ pipeline_context.organization.name | lower }}/{{ pipeline_context.project.name }}.git .
+          ls -a       
+          # uv run manage.py setup -s
+          ##{% for pc in pipeline_command %}
+          {{ pc }}{% endfor %}
+{% endautoescape %}

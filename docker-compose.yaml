@@ -1,0 +1,53 @@
+
+
+services:
+  debugpy:
+    container_name: debugpy
+    restart: always
+    working_dir: /src
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/src:rw
+      - ./cli.sh:/root/.bashrc:rw
+    environment:
+      DATABASE_ENGINE: spatialite
+      DEBUGPY_PORT: 5678
+      DJANGO_PORT: 8000
+      SERVICE_HOST: 192.168.179.3:8000
+      SERVICE_URL: http://10.220.119.12:8000
+      GIT_HOST: 192.168.179.3:3000
+      GIT_URL: http://192.168.179.3:3000
+    extra_hosts:
+      - cluster.local:192.168.179.6
+    ports:
+      - 5678:5678 # debugpy
+      - 8000:8000 # backend
+    command: ["/bin/bash","-c",". ~/.bashrc && cmd_debug"]
+    # command: ["/bin/bash","-c","python -m http.server -b 0.0.0.0 8009"]
+    # command: ["/bin/bash","-c","uv run debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000"]
+
+
+  jupyternotebook:
+    container_name: jupyternotebook
+    restart: always
+    working_dir: /src
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/src:rw
+      - ./cli.sh:/root/.bashrc:rw
+    environment:
+      DATABASE_ENGINE: spatialite
+      SERVICE_HOST: 192.168.179.3:8000
+      SERVICE_URL: http://10.220.119.12:8000
+      GIT_HOST:  http://10.220.119.12:3000
+      JUPYTER_SERVER_PORT: 8001
+    extra_hosts:
+      - cluster.local:192.168.179.6
+    ports:
+      - 8001:8001 # backend
+    command: ["/bin/bash","-c",". ~/.bashrc && cmd_jupyter"]
+

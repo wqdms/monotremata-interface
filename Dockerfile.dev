@@ -1,0 +1,12 @@
+FROM docker.io/astral/uv:python3.12-bookworm-slim
+ENV PYTHONUNBUFFERED=1 
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
+    git jq yq curl wget nano unzip tk8.6
+
+RUN mkdir /app
+COPY ./app /app
+RUN uv init
+RUN uv pip install -r /app/requirements.txt
+WORKDIR /app

@@ -1,0 +1,66 @@
+{% autoescape off %}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ meta_name | lower }}
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: {{ organization.name | lower }}
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: {{ organization.name | lower }}/{{ project.name | lower }}/helm
+    repoURL: '{{ helm_repository }}' 
+    targetRevision: {{ name }}
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: 'environments[0].name'
+          value: 'DB_NAME'
+        - name: 'environments[0].value'
+          value: '{{ db_name }}'
+        - name: 'environments[1].name'
+          value: 'DB_PASSWORD'
+        - name: 'environments[1].value'
+          value: '{{ db_password }}'
+        - name: 'environments[2].name'
+          value: 'DB_USER'
+        - name: 'environments[2].value'
+          value: '{{ db_user }}'
+        - name: 'environments[3].name'
+          value: 'DB_HOST'
+        - name: 'environments[3].value'
+          value: '{{ db_host }}'
+        - name: 'environments[4].name'
+          value: 'DB_PORT'
+        - name: 'environments[4].value'
+          value: '{{ db_port }}'
+        - name: 'ingress.hosts[0].host'
+          value: '{{ service_public_url }}'
+        - name: 'ingress.hosts[1].host'
+          value: '{{ service_private_url }}'
+        - name: image.pullPolicy
+          value: Always
+        - name: image.tag
+          value: 'latest '
+        - name: image.repository
+          value: '{{ registry_url }}/monotremata'
+        - name: fullnameOverride
+          value: '{{ meta_name | lower }}'
+        - name: SERVICE_URL
+          value: '{{ SERVICE_URL }}'
+        - name: SERVICE_HOST
+          value: '{{ SERVICE_HOST }}'
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - PruneLast=true
+      - CreateNamespace=true
+      - Replace=true
+{% endautoescape %}

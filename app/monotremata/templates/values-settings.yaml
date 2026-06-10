@@ -1,0 +1,62 @@
+environments:
+  # Django Core (Retained from original)
+  - name: "DJANGO_SECRET_KEY"
+    value: "django-insecure-0=_^0tqg+pkc#m6q#*20izp96#)-52c&&xby#r3d1(!--8ig9%"
+  - name: "DJANGO_DEBUG"
+    value: "True"
+  - name: "DJANGO_ALLOWED_HOSTS"
+    value: "*"
+  - name: "DJANGO_PORT"
+    value: "8001"
+
+  # Database (PostgreSQL)
+  - name: "DB_NAME"
+    value: "monotremata"
+  - name: "DB_USER"
+    value: "monotremata"
+  - name: "DB_PASSWORD"
+    value: "admin1234"
+  - name: "DB_HOST"
+    value: "monotremata.database.svc.cluster.local"
+  - name: "DB_PORT"
+    value: "5432"
+
+  # Git / Forgejo Integration
+  - name: "GIT_ADMIN_USER"
+    value: "amir"
+  - name: "GIT_ADMIN_PASSWORD"
+    value: ""
+  - name: "GIT_HOST"
+    value: "forgejo.forgejo.svc.cluster.local"
+  - name: "GIT_URL"
+    value: "http://forgejo.forgejo.svc.cluster.local"
+
+  # Service & Network Routing
+  - name: "SERVICE_URL"
+    value: "http://monotremata.monotremata.svc.cluster.local"
+  - name: "SERVICE_HOST"
+    value: "monotremata.monotremata.svc.cluster.local"
+
+  # Jupyter Server Configuration
+  - name: "JUPYTER_SERVER_HOST_IP"
+    value: "0.0.0.0"
+  - name: "JUPYTER_SERVER_HOST_PROTOCOL"
+    value: "http"
+  # Note: These two are dynamically constructed in your Python code 
+  # from the above protocol/IP/port, but included here for completeness
+  - name: "JUPYTER_SERVER_HOST"
+    value: "http://0.0.0.0"
+  - name: "JUPYTER_SERVICE_URL"
+    value: "http://0.0.0.0:8001"
+  - name: "JUPYTER_SERVER_PORT"
+    value: "8001"
+  - name: "JUPYTER_WEBPATH"
+    value: ""
+  - name: "JUPYTER_TOKEN"
+    value: "token1234"
+
+  # API / Swagger Documentation
+  - name: "MONOTREMATA_SWAGGER_TITLE"
+    value: "Monotremata 🦔"
+  - name: "API_VERSION"
+    value: "1.1"

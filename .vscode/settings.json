@@ -1,0 +1,4 @@
+{
+    "python.defaultInterpreterPath": "/home/worker/apps/wqdms/monotremata-interface/app/.venv/bin/python3.12",
+    "editor.defaultFormatter": "ms-python.black-formatter"
+}

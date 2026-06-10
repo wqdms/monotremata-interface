@@ -1,0 +1,32 @@
+[project]
+name = "monotremata-interface"
+version = "0.0.1"
+requires-python = ">=3.12"
+dependencies = [
+    "django==6.0.4",
+    "django-admin-interface==0.32.0",
+    "django-colorfield==0.14.0",
+    "django-cors-headers==4.9.0",
+    "django-extensions==4.1",
+    "django-filter==25.2",
+    "django-import-export==4.4.0",
+    "django-lifecycle==1.2.7",
+    "djangorestframework==3.17.1",
+    "djangorestframework-simplejwt==5.5.1",
+    "drf-spectacular==0.29.0",
+    "drf-spectacular-sidecar==2026.4.14",
+    {% if project.category in "server gis" %}
+    "whitenoise==6.12.0",
+    {% endif %}
+    "djangorestframework-gis==1.2.1",
+    {% if project.category in "server gis" %}
+    "pandas==3.0.2",
+    "geopandas==1.1.3",
+    "django-apptemplates==1.5",
+    {% endif %}
+    {% if project.db_driver in "postgres postgis" %}
+    "psycopg2-binary==2.9.12"
+    {% endif %}
+]
+#[project.scripts]
+#mono-setup = "manage"

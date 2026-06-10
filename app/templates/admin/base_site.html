@@ -1,0 +1,68 @@
+{% extends "admin_interface:admin/base_site.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+  <a href="{% url 'admin:index' %}">
+    {{ site_header|default:_('Interface') }} ... 
+  </a>
+  <a href="/admin/monotremata/project">
+   <div title="Project" class="icon-logo">🦦</div>
+  </a>
+  <a href="/admin/monotremata/application">
+   <div title="Application" class="icon-logo">🦫</div>
+  </a>
+  <a href="/admin/monotremata/presetmodel">
+   <div title="Preset Model" class="icon-logo">🦔</div>
+  </a>
+  <a href="/admin/monotremata/presetmodelfield">
+   <div title="Preset Model Field" class="icon-logo">🦆</div>
+  </a>
+  <a href="/admin/monotremata/deployment">
+   <div title="Deployment" class="icon-logo">🥚</div>
+  </a>
+  <a href="/admin/monotremata/document">
+   <div title="Document" class="icon-logo-small">📑</div>
+  </a>
+  <a href="/admin/monotremata/organization">
+   <div title="Organization" class="icon-logo-small">🧭</div>
+  </a>
+  <a href="/admin/monotremata/namespace">
+    <div title="Namespace" class="icon-logo-small">🌐</div>
+  </a>
+  <a href="/admin/monotremata/domain">
+   <div title="Domain" class="icon-logo-small">🌏</div>
+  </a>
+</div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+<style>
+  select{
+    background-color: rgba(100, 125, 100, 0.675);
+    color: rgb(31, 41, 49);
+  }
+  option{
+      background-color: #4b4a4a5f;
+      color: rgb(0, 0, 0);
+  }
+  .icon-logo{
+    font-size: 50px;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: inline-block;
+  }
+  .icon-logo-small{
+    font-size: 25px;
+    display: inline-block;
+    padding: 8px;
+    padding-bottom: 0px;
+  }
+</style>
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}

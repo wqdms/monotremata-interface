@@ -1,0 +1,9 @@
+prune tests
+include CHANGELOG.rst
+include LICENSE
+include pyproject.toml
+include README.rst
+include src/*/py.typed
+prune src/interface
+exclude app/manage.py
+exclude app/monotremata/migrations/0001_initial.py

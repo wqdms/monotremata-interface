@@ -1,0 +1,180 @@
+[
+    {
+        "className": "AbstractMetaModel",
+        "classParent": "AbstractMetaModelMixin,models.Model",
+        "fields": [
+            {
+                "fieldDataType": "PresetModelField.charfield",
+                "fieldName": "name",
+                "fieldParameters": "max_length=254"
+            },
+            {
+                "fieldDataType": "PresetModelField.charfield",
+                "fieldName": "tag",
+                "fieldParameters": "max_length=254"
+            },
+            {
+                "fieldDataType": "PresetModelField.floatfield",
+                "fieldName": "sorting",
+                "fieldParameters": "default=0.0"
+            },
+            {
+                "fieldDataType": "PresetModelField.choices",
+                "fieldName": "lifecycle_hook",
+                "fieldParameters": "['default','updated','reload']"
+            }
+        ],
+        "abstract": true,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "className": "Domain",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "PresetModelField.jsonfield",
+                "fieldName": "meta",
+                "fieldParameters": "default=dict"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "className": "Namespace",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='namespace_domains'"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "verbose_name":"1: Organization",
+        "className": "Organization",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='organization_domains'"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "verbose_name":"2: Project",
+        "className": "Project",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='project_domains'"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "verbose_name":"3: Application",
+        "className": "Application",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='application_domains'"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "className": "PresetModel",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='model_domains'"
+            },
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "namespaces",
+                "fieldParameters": "'Namespace',blank=True,related_name='model_namespaces'"
+            },
+            {
+                "fieldDataType": "PresetModelField.classnamefield",
+                "fieldName": "className",
+                "fieldParameters": ""
+            },
+            {
+                "fieldDataType": "PresetModelField.classnamefield",
+                "fieldName": "classParent",
+                "fieldParameters": ""
+            },
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "fields",
+                "fieldParameters": "'PresetModelField',blank=True"
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    },
+    {
+        "className": "PresetModelField",
+        "classParent": "AbstractMetaModel",
+        "fields": [
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "domain",
+                "fieldParameters": "'Domain',blank=True,related_name='field_domains'"
+            },
+            {
+                "fieldDataType": "models.ManyToManyField",
+                "fieldName": "namespaces",
+                "fieldParameters": "'Namespace',blank=True,related_name='field_namespaces'"
+            },
+            {
+                "fieldDataType": "PresetModelField.choices",
+                "fieldName": "fieldDataType",
+                "fieldParameters": "PresetModelField.field_classes"
+            },
+            {
+                "fieldDataType": "PresetModelField.namefield",
+                "fieldName": "fieldName",
+                "fieldParameters": ""
+            },
+            {
+                "fieldDataType": "PresetModelField.textfield",
+                "fieldName": "fieldParameters",
+                "fieldParameters": ""
+            }
+        ],
+        "abstract": false,
+        "ordering": [
+            "sorting"
+        ]
+    }
+]

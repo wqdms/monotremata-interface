@@ -1,0 +1,98 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "rules": [
+        {
+            "module": "*manage.py",
+            "include": "false"
+        }
+    ],
+    "configurations": [
+        {
+            "name": "CMD:Git",
+            "cwd": "${workspaceFolder}/app/",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/app/manage.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "GIT_URL":"http://192.168.179.3:3000"
+            },
+            "args": [
+                "git",
+                "-d","1"
+            ]
+        },
+        {
+            "name": "CMD:Parser",
+            "cwd": "${workspaceFolder}/app/",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": true,
+            "program": "${workspaceFolder}/app/manage.py",
+            "console": "integratedTerminal",
+            "args": [
+                "parser",
+                "-ids",
+                "1,4,3,2"
+                // "-f",
+                // // "./mono.json"
+                // "./test.csv"
+            ]
+        },
+        {
+            "name": "SVC:Mono",
+            "cwd": "${workspaceFolder}/app/",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": true,
+            "program": "${workspaceFolder}/app/manage.py",
+            "console": "integratedTerminal",
+            "args": [
+                "setup",
+                "-s"
+            ]
+        },
+        {
+            "name": "SVC:Packaged",
+            "cwd": "${workspaceFolder}/packaged/",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": true,
+            "env": {
+                "DJANGO_PORT": "8001"
+            },
+            "program": "${workspaceFolder}/packaged/manage.py",
+            "console": "integratedTerminal",
+            "args": [
+                "setup",
+                "-s"
+            ]
+        },
+        {
+            "name": "Python: Remote Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "justMyCode": true,
+            "rules": [
+                {
+                    "path": "src/app/manage.py",
+                    "include": false
+                },
+            ],
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/app",
+                    "remoteRoot": "/src/app"
+                }
+            ]
+        }
+    ]
+}

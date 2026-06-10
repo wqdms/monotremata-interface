@@ -1,0 +1,14 @@
+FROM docker.io/astral/uv:python3.12-bookworm-slim
+ENV PYTHONUNBUFFERED=1 
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
+    git jq yq curl wget nano unzip tk8.6 \
+    binutils libproj-dev gdal-bin geos-bin libsqlite3-mod-spatialite
+
+
+
+RUN git clone http://192.168.179.3:3000/wqdms/monotremata-interface.git mono
+WORKDIR mono/app
+RUN mkdir -p /mono/app/.venv
+COPY ./app/.venv/. /mono/app/.venv/.
